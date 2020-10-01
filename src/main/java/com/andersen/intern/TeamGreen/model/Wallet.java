@@ -2,6 +2,7 @@ package com.andersen.intern.TeamGreen.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 /* Наш кошелек, у которого есть поле balance и user_id
 *
@@ -19,11 +20,12 @@ public class Wallet extends AbstractBaseEntity {
             fetch = FetchType.LAZY, optional = false)
     private User user;
 
+
     public Wallet() {
     }
 
-    public Wallet(Integer id, BigDecimal balance, User user) {
-        super(id);
+    public Wallet(Integer id, BigDecimal balance, User user, LocalDateTime created, LocalDateTime lastUpdated) {
+        super(id, created, lastUpdated);
         this.balance = balance;
         this.user = user;
     }
