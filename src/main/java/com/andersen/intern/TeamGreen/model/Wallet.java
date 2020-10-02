@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 * */
 
 @Entity
-@Table(name = "wallets", uniqueConstraints = {@UniqueConstraint(columnNames = "user_id", name = "wallets_unique_user_id_idx")})
+@Table(name = "wallets")
 public class Wallet extends AbstractBaseEntity {
 
     @Column(name = "balance", nullable = false)
