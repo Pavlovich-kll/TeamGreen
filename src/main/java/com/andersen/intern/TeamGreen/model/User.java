@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.EnumSet;
 import java.util.Set;
@@ -43,10 +44,11 @@ public class User extends AbstractNamedEntity {
     @ElementCollection(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
+
     protected User() {}
 
-    public User(Integer id, String name, String email, String password, Wallet wallet, Set<Role> roles) {
-        super(id, name);
+    public User(Integer id, String name, String email, String password, LocalDateTime created, LocalDateTime lastUpdated, Wallet wallet, Set<Role> roles) {
+        super(id, name, created, lastUpdated);
         this.email = email;
         this.password = password;
         this.wallet = wallet;
@@ -69,6 +71,14 @@ public class User extends AbstractNamedEntity {
         this.password = password;
     }
 
+    public Wallet getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(Wallet wallet) {
+        this.wallet = wallet;
+    }
+
     public Set<Role> getRoles() {
         return roles;
     }
@@ -83,7 +93,10 @@ public class User extends AbstractNamedEntity {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
-                ", roles='" + roles + '\'' +
+                ", created=" + created +
+                ", lastUpdated=" + lastUpdated +
+                ", wallet=" + wallet +
+                ", roles=" + roles +
                 '}';
     }
 }

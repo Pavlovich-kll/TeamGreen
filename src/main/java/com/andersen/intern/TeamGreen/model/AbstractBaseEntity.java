@@ -1,9 +1,10 @@
 package com.andersen.intern.TeamGreen.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
-/* Абстрактный класс entity, у которого есть поле id
+/* Абстрактный класс entity, у которого есть поле id, created, lastUpdated
 * а так же переопределены методы equals, hashCode и toString
 * От него наследуем entity, у которых нет имени
 * */
@@ -18,11 +19,19 @@ public abstract class AbstractBaseEntity {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
     protected Integer id;
 
+    @Column(name = "created", nullable = false)
+    protected LocalDateTime created;
+
+    @Column(name = "last_updated", nullable = false)
+    protected LocalDateTime lastUpdated;
+
     protected AbstractBaseEntity() {
     }
 
-    public AbstractBaseEntity(Integer id) {
+    public AbstractBaseEntity(Integer id, LocalDateTime created, LocalDateTime lastUpdated) {
         this.id = id;
+        this.created = created;
+        this.lastUpdated = lastUpdated;
     }
 
     public Integer getId() {
@@ -31,6 +40,22 @@ public abstract class AbstractBaseEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public LocalDateTime getLastUpdated() {
+        return lastUpdated;
+    }
+
+    public void setLastUpdated(LocalDateTime lastUpdated) {
+        this.lastUpdated = lastUpdated;
     }
 
     @Override
