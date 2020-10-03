@@ -7,8 +7,8 @@ import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 /* Абстрактный класс entity, у которого есть имя
-*  От него будем наследовать entity, у которых есть имена
-* */
+ *  От него будем наследовать entity, у которых есть имена
+ * */
 
 @MappedSuperclass
 public class AbstractNamedEntity extends AbstractBaseEntity {

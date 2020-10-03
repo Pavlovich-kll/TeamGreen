@@ -13,8 +13,8 @@ import java.util.EnumSet;
 import java.util.Set;
 
 /* Наш пользователь, у которого есть id, name, email, password, wallet и roles
-*  Здесь в дальнейшем нужно будет добавить поле orders (ManyToMany)
-* */
+ *  Здесь в дальнейшем нужно будет добавить поле orders (ManyToMany)
+ * */
 
 @Entity
 @Table(name = "users", uniqueConstraints = {@UniqueConstraint(columnNames = "email", name = "users_unique_email_idx")})
@@ -38,14 +38,15 @@ public class User extends AbstractNamedEntity {
 
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
-                    uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"},
-                            name = "user_roles_unique_idx")})
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"user_id", "role"},
+                    name = "user_roles_unique_idx")})
     @Column(name = "role")
     @ElementCollection(fetch = FetchType.LAZY)
     private Set<Role> roles;
 
 
-    protected User() {}
+    protected User() {
+    }
 
     public User(Integer id, String name, String email, String password, LocalDateTime created, LocalDateTime lastUpdated, Wallet wallet, Set<Role> roles) {
         super(id, name, created, lastUpdated);
