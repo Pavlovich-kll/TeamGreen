@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /* Наш кошелек, у которого есть поле balance и user_id
-*
-* */
+ *
+ * */
 
 @Entity
-@Table(name = "wallets", uniqueConstraints = {@UniqueConstraint(columnNames = "user_id", name = "wallets_unique_user_id_idx")})
+@Table(name = "wallets")
 public class Wallet extends AbstractBaseEntity {
 
     @Column(name = "balance", nullable = false)

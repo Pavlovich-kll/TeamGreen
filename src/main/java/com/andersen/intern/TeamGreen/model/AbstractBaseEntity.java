@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /* Абстрактный класс entity, у которого есть поле id, created, lastUpdated
-* а так же переопределены методы equals, hashCode и toString
-* От него наследуем entity, у которых нет имени
-* */
+ * а так же переопределены методы equals, hashCode и toString
+ * От него наследуем entity, у которых нет имени
+ * */
 
 @MappedSuperclass
 @Access(AccessType.FIELD)
