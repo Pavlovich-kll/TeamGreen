@@ -23,8 +23,6 @@ public class Product extends AbstractBaseEntity{
     private long price;
     @Lob
     private byte image;
-    private Date created;
-    private Date lastUpdated;
     @ManyToOne
     @JoinColumn(name = "type_id")
     private Type type;
