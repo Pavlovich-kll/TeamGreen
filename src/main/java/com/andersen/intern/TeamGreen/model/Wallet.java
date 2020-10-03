@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /* Наш кошелек, у которого есть поле balance и user_id
-*
-* */
+ *
+ * */
 
 @Entity
 @Table(name = "wallets")
