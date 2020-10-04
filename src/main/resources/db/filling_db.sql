@@ -17,8 +17,8 @@ VALUES (1, 'ADMIN'),
 INSERT INTO users (user_id, name, email, password, wallet_id)
 VALUES (1, 'Admin', 'admin@gmail.com', 'admin', 1),
        (2, 'User1', 'user@yandex.ru', 'password', 2),
-       (3, 'User1', 'user@yandex.ru', 'password', 3),
-       (4, 'User1', 'user@yandex.ru', 'password', 4);
+       (3, 'User2', 'user@yandex.ru', 'password', 3),
+       (4, 'User3', 'user@yandex.ru', 'password', 4);
 
 
 INSERT INTO wallets (user_id, balance)
@@ -31,6 +31,6 @@ VALUES (1, 100.0),
 INSERT INTO types (id, name)
 VALUES (1, 'Рыбки'),
        (2, 'Аквариумы'),
-       (2, 'Аксессуары'),
-       (2, 'Корм'),
-       (2, 'Лекарства');
+       (3, 'Аксессуары'),
+       (4, 'Корм'),
+       (5, 'Лекарства');
