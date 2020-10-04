@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS user_roles;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS wallets CASCADE;
-DROP TABLE IF EXISTS products;
+DROP TABLE IF EXISTS products CASCADE;
 DROP TABLE IF EXISTS types;
 DROP TABLE IF EXISTS ordered_products;
 DROP TABLE IF EXISTS orders;
@@ -11,11 +11,11 @@ CREATE SEQUENCE global_seq START WITH 100000;
 
 CREATE TABLE users
 (
-    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    id          BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
     name        VARCHAR   NOT NULL,
     email       VARCHAR   NOT NULL,
     password    VARCHAR   NOT NULL,
-    wallet_id   INTEGER   NOT NULL,
+    wallet_id   BIGINT    NOT NULL,
     created     TIMESTAMP NOT NULL,
     last_update TIMESTAMP NOT NULL
 );
@@ -31,8 +31,8 @@ CREATE TABLE user_roles
 
 CREATE TABLE wallets
 (
-    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    user_id     INTEGER   NOT NULL,
+    id          BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
+    user_id     BIGINT    NOT NULL,
     balance     DECIMAL   NOT NULL,
     created     TIMESTAMP NOT NULL,
     last_update TIMESTAMP NOT NULL,
@@ -44,7 +44,7 @@ ALTER TABLE users
 
 CREATE TABLE types
 (
-    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    id          BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
     name        VARCHAR   NOT NULL,
     created     TIMESTAMP NOT NULL,
     last_update TIMESTAMP NOT NULL
@@ -52,21 +52,22 @@ CREATE TABLE types
 
 CREATE TABLE products
 (
-    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    id          BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
+    name        VARCHAR   NOT NULL,
     description VARCHAR   NOT NULL,
     image       BYTEA     NOT NULL,
     price       INTEGER   NOT NULL,
     created     TIMESTAMP NOT NULL,
     last_update TIMESTAMP NOT NULL,
-    type_id     INTEGER   NOT NULL,
+    type_id     BIGINT    NOT NULL,
     FOREIGN KEY (type_id) REFERENCES types (id)
 );
 
 CREATE TABLE orders
 (
-    id          INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
+    id          BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
     status      VARCHAR   NOT NULL,
-    user_id     INTEGER   NOT NULL,
+    user_id     BIGINT    NOT NULL,
     created     TIMESTAMP NOT NULL,
     last_update TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)
@@ -74,7 +75,7 @@ CREATE TABLE orders
 
 CREATE TABLE ordered_products
 (
-    order_id   INTEGER NOT NULL,
-    product_id INTEGER NOT NULL,
+    order_id   BIGINT NOT NULL,
+    product_id BIGINT NOT NULL,
     CONSTRAINT PK_ORDERED_PRODUCT PRIMARY KEY (order_id, product_id)
 );

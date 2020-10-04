@@ -48,7 +48,7 @@ public class User extends AbstractNamedEntity {
     protected User() {
     }
 
-    public User(Integer id, String name, String email, String password, LocalDateTime created, LocalDateTime lastUpdated, Wallet wallet, Set<Role> roles) {
+    public User(Long id, String name, String email, String password, LocalDateTime created, LocalDateTime lastUpdated, Wallet wallet, Set<Role> roles) {
         super(id, name, created, lastUpdated);
         this.email = email;
         this.password = password;

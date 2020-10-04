@@ -15,9 +15,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 @Entity
 @Table(name = "orders")
 public class Order extends AbstractBaseEntity {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private long id;
     private String status;
     @ManyToOne
     @JoinColumn(name = "user_id")

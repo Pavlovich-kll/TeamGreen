@@ -14,10 +14,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "products")
-public class Product extends AbstractBaseEntity {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private long id;
+public class Product extends AbstractNamedEntity {
     private String description;
     private long price;
     @Lob
