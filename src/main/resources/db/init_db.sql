@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS user_roles;
+DROP TABLE IF EXISTS product_types;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS wallets CASCADE;
 DROP TABLE IF EXISTS products CASCADE;
@@ -23,10 +24,18 @@ CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 
 CREATE TABLE user_roles
 (
-    user_id INTEGER NOT NULL,
+    user_id BIGINT NOT NULL,
     role    VARCHAR,
     CONSTRAINT user_roles_idx UNIQUE (user_id, role),
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
+);
+
+CREATE TABLE product_types
+(
+    product_id BIGINT NOT NULL,
+    type       VARCHAR,
+    CONSTRAINT product_types_unique_idx UNIQUE (product_id, type),
+    FOREIGN KEY (product_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
 CREATE TABLE wallets
@@ -42,14 +51,6 @@ CREATE TABLE wallets
 ALTER TABLE users
     ADD FOREIGN KEY (wallet_id) REFERENCES wallets (id) ON DELETE CASCADE;
 
-CREATE TABLE types
-(
-    id          BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
-    name        VARCHAR   NOT NULL,
-    created     TIMESTAMP NOT NULL,
-    last_update TIMESTAMP NOT NULL
-);
-
 CREATE TABLE products
 (
     id          BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
@@ -58,9 +59,7 @@ CREATE TABLE products
     image       BYTEA     NOT NULL,
     price       INTEGER   NOT NULL,
     created     TIMESTAMP NOT NULL,
-    last_update TIMESTAMP NOT NULL,
-    type_id     BIGINT    NOT NULL,
-    FOREIGN KEY (type_id) REFERENCES types (id)
+    last_update TIMESTAMP NOT NULL
 );
 
 CREATE TABLE orders
