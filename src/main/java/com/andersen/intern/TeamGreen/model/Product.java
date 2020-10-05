@@ -1,6 +1,7 @@
 package com.andersen.intern.TeamGreen.model;
 
 import javax.persistence.*;
+
 import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -19,6 +20,7 @@ public class Product extends AbstractNamedEntity {
     @Column(name = "type")
     @ElementCollection(fetch = FetchType.LAZY)
     private Set<Type> types;
+
     @ManyToMany(mappedBy = "products")
     Set<Order> orders;
 
@@ -60,5 +62,6 @@ public class Product extends AbstractNamedEntity {
 
     public void setTypes(Set<Type> types) {
         this.types = types;
+
     }
 }

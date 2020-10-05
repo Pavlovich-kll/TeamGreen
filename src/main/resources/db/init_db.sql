@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS product_types;
 DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS wallets CASCADE;
 DROP TABLE IF EXISTS products CASCADE;
+
 DROP TABLE IF EXISTS types;
 DROP TABLE IF EXISTS ordered_products;
 DROP TABLE IF EXISTS orders;
@@ -42,6 +43,7 @@ CREATE TABLE wallets
 (
     id          BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
     user_id     BIGINT    NOT NULL,
+
     balance     DECIMAL   NOT NULL,
     created     TIMESTAMP NOT NULL,
     last_update TIMESTAMP NOT NULL,
@@ -51,22 +53,27 @@ CREATE TABLE wallets
 ALTER TABLE users
     ADD FOREIGN KEY (wallet_id) REFERENCES wallets (id) ON DELETE CASCADE;
 
+
 CREATE TABLE products
 (
     id          BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
     name        VARCHAR   NOT NULL,
+
     description VARCHAR   NOT NULL,
     image       BYTEA     NOT NULL,
     price       INTEGER   NOT NULL,
     created     TIMESTAMP NOT NULL,
     last_update TIMESTAMP NOT NULL
+
 );
 
 CREATE TABLE orders
 (
+
     id          BIGINT PRIMARY KEY DEFAULT nextval('global_seq'),
     status      VARCHAR   NOT NULL,
     user_id     BIGINT    NOT NULL,
+
     created     TIMESTAMP NOT NULL,
     last_update TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)
@@ -76,5 +83,6 @@ CREATE TABLE ordered_products
 (
     order_id   BIGINT NOT NULL,
     product_id BIGINT NOT NULL,
+
     CONSTRAINT PK_ORDERED_PRODUCT PRIMARY KEY (order_id, product_id)
 );
