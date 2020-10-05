@@ -11,7 +11,7 @@ public class Product extends AbstractNamedEntity {
     private String description;
     private long price;
     @Lob
-    private byte image;
+    private byte[] image;
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "product_types", joinColumns = @JoinColumn(name = "product_id"),
             uniqueConstraints = {@UniqueConstraint(columnNames = {"product_id", "type"},
@@ -38,11 +38,11 @@ public class Product extends AbstractNamedEntity {
         this.price = price;
     }
 
-    public byte getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(byte image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
