@@ -1,30 +1,26 @@
 package com.andersen.intern.TeamGreen.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+
 import java.util.Set;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "products")
-public class Product extends AbstractBaseEntity {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private long id;
+public class Product extends AbstractNamedEntity {
     private String description;
     private long price;
     @Lob
-    private byte image;
-    @ManyToOne
-    @JoinColumn(name = "type_id")
-    private Type type;
+    private byte[] image;
+    @Enumerated(EnumType.STRING)
+    @CollectionTable(name = "product_types", joinColumns = @JoinColumn(name = "product_id"),
+            uniqueConstraints = {@UniqueConstraint(columnNames = {"product_id", "type"},
+                    name = "product_types_unique_idx")})
+    @Column(name = "type")
+    @ElementCollection(fetch = FetchType.LAZY)
+    private Set<Type> types;
+
     @ManyToMany(mappedBy = "products")
     Set<Order> orders;
 
@@ -44,20 +40,12 @@ public class Product extends AbstractBaseEntity {
         this.price = price;
     }
 
-    public byte getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(byte image) {
+    public void setImage(byte[] image) {
         this.image = image;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
     }
 
     public Set<Order> getOrders() {
@@ -66,5 +54,14 @@ public class Product extends AbstractBaseEntity {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    public Set<Type> getTypes() {
+        return types;
+    }
+
+    public void setTypes(Set<Type> types) {
+        this.types = types;
+
     }
 }

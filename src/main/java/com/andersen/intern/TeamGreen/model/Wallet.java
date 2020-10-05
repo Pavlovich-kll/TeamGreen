@@ -24,7 +24,7 @@ public class Wallet extends AbstractBaseEntity {
     public Wallet() {
     }
 
-    public Wallet(Integer id, BigDecimal balance, User user, LocalDateTime created, LocalDateTime lastUpdated) {
+    public Wallet(Long id, BigDecimal balance, User user, LocalDateTime created, LocalDateTime lastUpdated) {
         super(id, created, lastUpdated);
         this.balance = balance;
         this.user = user;

@@ -17,7 +17,7 @@ public abstract class AbstractBaseEntity {
     @Id
     @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
-    protected Integer id;
+    protected Long id;
 
     @Column(name = "created", nullable = false)
     protected LocalDateTime created;
@@ -28,17 +28,17 @@ public abstract class AbstractBaseEntity {
     protected AbstractBaseEntity() {
     }
 
-    public AbstractBaseEntity(Integer id, LocalDateTime created, LocalDateTime lastUpdated) {
+    public AbstractBaseEntity(Long id, LocalDateTime created, LocalDateTime lastUpdated) {
         this.id = id;
         this.created = created;
         this.lastUpdated = lastUpdated;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

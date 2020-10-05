@@ -21,7 +21,7 @@ public class AbstractNamedEntity extends AbstractBaseEntity {
     protected AbstractNamedEntity() {
     }
 
-    public AbstractNamedEntity(Integer id, String name, LocalDateTime created, LocalDateTime lastUpdated) {
+    public AbstractNamedEntity(Long id, String name, LocalDateTime created, LocalDateTime lastUpdated) {
         super(id, created, lastUpdated);
         this.name = name;
     }
