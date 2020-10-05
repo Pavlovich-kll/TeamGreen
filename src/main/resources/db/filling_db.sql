@@ -2,7 +2,7 @@ DELETE FROM user_roles;
 DELETE FROM users;
 DELETE FROM wallets;
 DELETE FROM products;
-DELETE FROM types;
+DELETE FROM product_types;
 DELETE FROM ordered_products;
 DELETE FROM orders;
 ALTER SEQUENCE global_seq RESTART WITH 1;
@@ -14,7 +14,7 @@ VALUES (1, 'ADMIN'),
        (4, 'USER');
 
 
-INSERT INTO users (user_id, name, email, password, wallet_id)
+INSERT INTO users (id, name, email, password, wallet_id)
 VALUES (1, 'Admin', 'admin@gmail.com', 'admin', 1),
        (2, 'User1', 'user@yandex.ru', 'password', 2),
        (3, 'User2', 'user@yandex.ru', 'password', 3),
@@ -28,7 +28,7 @@ VALUES (1, 100.0),
        (4, 120000.0);
 
 
-INSERT INTO types (id, name)
+INSERT INTO product_types (product_id, type)
 VALUES (1, 'Рыбки'),
        (2, 'Аквариумы'),
        (3, 'Аксессуары'),
