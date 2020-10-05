@@ -3,8 +3,6 @@ package com.andersen.intern.TeamGreen.model;
 import javax.persistence.*;
 import java.util.Set;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 @Entity
 @Table(name = "products")
 public class Product extends AbstractNamedEntity {
