@@ -19,7 +19,7 @@ CREATE TABLE users
     password    VARCHAR   NOT NULL,
     wallet_id   BIGINT    NOT NULL,
     created     TIMESTAMP NOT NULL,
-    last_update TIMESTAMP NOT NULL
+    last_updated TIMESTAMP NOT NULL
 );
 CREATE UNIQUE INDEX users_unique_email_idx ON users (email);
 
@@ -46,7 +46,7 @@ CREATE TABLE wallets
 
     balance     DECIMAL   NOT NULL,
     created     TIMESTAMP NOT NULL,
-    last_update TIMESTAMP NOT NULL,
+    last_updated TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
 );
 
@@ -60,10 +60,10 @@ CREATE TABLE products
     name        VARCHAR   NOT NULL,
 
     description VARCHAR   NOT NULL,
-    image       BYTEA     NOT NULL,
+    image       oid     NOT NULL,
     price       INTEGER   NOT NULL,
     created     TIMESTAMP NOT NULL,
-    last_update TIMESTAMP NOT NULL
+    last_updated TIMESTAMP NOT NULL
 
 );
 
@@ -75,7 +75,7 @@ CREATE TABLE orders
     user_id     BIGINT    NOT NULL,
 
     created     TIMESTAMP NOT NULL,
-    last_update TIMESTAMP NOT NULL,
+    last_updated TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
 
